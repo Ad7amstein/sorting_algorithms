@@ -20,8 +20,13 @@ int main(){
     sortlib::print_array(datac, n);
     sortlib::calc_time(&(sortlib::BubbleSort), n);
     cout << "-----------shell_sort---------------\n";
-    vector<int> dataii = {5, 200, -24, 0, 1};
-    sortlib::shell_sort(dataii, n);
-    sortlib::print_array(dataii, n);
+    vector<double> datad = {280.78, 0.5, -13, 9, -123.14};
+    sortlib::shell_sort(datad, n);
+    sortlib::print_array(datad, n);
     sortlib::calc_time(&(sortlib::shell_sort), n);
+    cout << "-----------merge_sort---------------\n";
+    vector<int> dataii = {5, 200, -24, 0, 1};
+    sortlib::merge_sort(dataii, n, 0, n - 1);
+    sortlib::print_array(dataii, n);
+    sortlib::calc_time(&(sortlib::call_merge), n);
 }
