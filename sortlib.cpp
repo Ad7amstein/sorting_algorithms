@@ -47,11 +47,12 @@ namespace sortlib{
 
     void call_quick(T arr[] ,int n){ quick_sort(arr , 0 ,n-1); } ;
 
-    double calc_time(     void (*sort)( int arr[] , int n) , int size ) {
+    void calc_time(void (*sort)( int arr[] , int n) , int size ) {
 
         default_random_engine generator;
-        uniform_int_distribution<int> distribution(1, 100);
-
+        uniform_int_distribution<int> distribution(1, 1000);
+        vector<int> array_sizes = {200, 500, 1000, 5000};
+        for (auto size : array_sizes)
         {
             double total_time = 0;
             int num_runs = 10;
@@ -60,7 +61,7 @@ namespace sortlib{
                 int arr[size];
                 for (int j = 0; j < size; j++)
                 {
-                    arr[j] = (distribution(generator)) ;
+                    arr[j] = (distribution(generator));
                 }
                 auto start_time = std::chrono::high_resolution_clock::now();
                 sort(arr, size);
@@ -68,8 +69,99 @@ namespace sortlib{
                 double run_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() / 1000.0;
                 total_time += run_time;
             }
-            return total_time ;
+            double avg_time = total_time / num_runs;
+            cout << "Average time for array size " << size << " is " << avg_time << " ms" << std::endl;
         }
     }
 
+    void calc_time(void (*sort)(vector<int>&arr, int n), int size)
+    {
+
+        default_random_engine generator;
+        uniform_int_distribution<int> distribution(1, 1000);
+        vector<int> array_sizes = {200, 500, 1000, 5000};
+        for (auto size : array_sizes)
+        {
+            double total_time = 0;
+            int num_runs = 10;
+            for (int i = 0; i < num_runs; i++)
+            {
+                vector<int> arr(size);
+                for (int j = 0; j < size; j++)
+                {
+                    arr[j] = (distribution(generator));
+                }
+                auto start_time = std::chrono::high_resolution_clock::now();
+                sort(arr, size);
+                auto end_time = std::chrono::high_resolution_clock::now();
+                double run_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() / 1000.0;
+                total_time += run_time;
+            }
+            double avg_time = total_time / num_runs;
+            cout << "Average time for array size " << size << " is " << avg_time << " ms" << std::endl;
+        }
+    }
+    template <typename T>
+    void shell_sort(vector<T> &data, int n)
+    {
+        for (int i = n / 2, j; i >= 1; i /= 2)
+        {
+            for (int k = 0, j; k < n; k += i)
+            {
+                int tmp = data[k];
+                for (j = k; j > 0 && tmp < data[j - i]; j -= i)
+                    data[j] = data[j - i];
+                data[j] = tmp;
+            }
+        }
+    }
+
+    template <class T>
+    void SelectionSort(vector<T> &v, int n)
+    {
+        T i = 0, j = 0, mn = v[0], indx = 0;
+        while (i < n)
+        {
+            j = i;
+            mn = v[i];
+            indx = i;
+            while (j < n)
+            {
+                if (mn > v[j])
+                {
+                    mn = v[j];
+                    indx = j;
+                }
+                j++;
+            }
+            swap(v[i], v[indx]);
+            i++;
+        }
+    }
+
+    template <class T>
+    void BubbleSort(vector<T> &v, int n)
+    {
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - 1; j++)
+            {
+                if (v[j] > v[j + 1])
+                    swap(v[j], v[j + 1]);
+            }
+    }
+
+    template <typename T>
+    void print_array(const vector<T> &data, int n)
+    {
+        for (T it : data)
+            cout << it << " ";
+        cout << endl;
+    }
+    template <typename T>
+    void print_array(T data[], int n)
+    {
+        for (int i = 0; i < n; ++i)
+            cout << data[i] << " ";
+        cout << endl;
+    }
 }
