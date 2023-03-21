@@ -44,7 +44,6 @@ namespace sortlib{
         quick_sort(arr , mid+1 , r) ;
     }
     template<typename T>
-
     void call_quick(T arr[] ,int n){ quick_sort(arr , 0 ,n-1); } ;
 
     void calc_time(void (*sort)( int arr[] , int n) , int size ) {
@@ -101,6 +100,46 @@ namespace sortlib{
             cout << "Average time for array size " << size << " is " << avg_time << " ms" << std::endl;
         }
     }
+
+    template <typename T>
+    void merge(vector<T> &data, int l, int mid, int r)
+    {
+        int n1 = mid - l + 1;
+        int n2 = r - mid;
+        vector<T> v1(n1);
+        vector<T> v2(n2);
+        for (int i = 0; i < n1; ++i)
+            v1[i] = data[i + l];
+        for (int i = 0; i < n2; ++i)
+            v2[i] = data[mid + i + 1];
+        int k = l, i = 0, j = 0;
+        while (i < n1 && j < n2)
+        {
+            if (v1[i] < v2[j])
+                data[k] = v1[i++];
+            else
+                data[k] = v2[j++];
+            k++;
+        }
+        while (i < n1)
+            data[k++] = v1[i++];
+        while (j < n2)
+            data[k++] = v2[j++];
+    }
+
+    template <typename T>
+    void merge_sort(vector<T> &data, int n, int l, int r)
+    {
+        if (l >= r)
+            return;
+        int mid = (l + r) / 2;
+        merge_sort(data, n, l, mid);
+        merge_sort(data, n, mid + 1, r);
+        merge(data, l, mid, r);
+    }
+    template<typename T>
+    void call_merge(vector<T>&arr, int n) { merge_sort(arr, n, 0, n - 1); };
+
     template <typename T>
     void shell_sort(vector<T> &data, int n)
     {
@@ -108,7 +147,7 @@ namespace sortlib{
         {
             for (int k = 0, j; k < n; k += i)
             {
-                int tmp = data[k];
+                T tmp = data[k];
                 for (j = k; j > 0 && tmp < data[j - i]; j -= i)
                     data[j] = data[j - i];
                 data[j] = tmp;
