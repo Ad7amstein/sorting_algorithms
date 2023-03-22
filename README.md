@@ -1,5 +1,5 @@
 # sorting_algorithms
-Sorting algorithms library using templates 
+Sorting algorithms library using templates with ( test cases - compute the running time ) for each algorithms.
 ### included algorithms:
 1. Insertion sort
 2. Selection sort
