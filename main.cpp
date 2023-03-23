@@ -29,4 +29,14 @@ int main(){
     sortlib::merge_sort(dataii, n, 0, n - 1);
     sortlib::print_array(dataii, n);
     sortlib::calc_time(&(sortlib::call_merge), n);
+    cout << "-----------quick_sort---------------\n";
+	int datai3[] = { 4000, 20, -132, 67, 42 };
+	sortlib::quick_sort(datai3, 0, n - 1);
+	sortlib::print_array(datai3, n);
+    sortlib::calc_time(&(sortlib::call_quick), n);
+    cout << "-----------count_sort---------------\n";
+    vector<int> datai4 = {4, 1, 3, 4, 3};
+    sortlib::count_sort(datai4, n);
+    sortlib::print_array(datai4, n);
+    sortlib::calc_time(&(sortlib::count_sort), n);
 }

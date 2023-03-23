@@ -1,6 +1,9 @@
 #include <iostream>
 #include <random>
 #include <chrono>
+#include <numeric>
+#include <algorithm>
+#include <vector>
 using namespace std;
 namespace sortlib{
     template <typename T>
@@ -187,6 +190,29 @@ namespace sortlib{
                 if (v[j] > v[j + 1])
                     swap(v[j], v[j + 1]);
             }
+    }
+
+    void count_sort(vector<int> &data, int n)
+    {
+        int max = *max_element(data.begin(), data.end());
+        int min = *min_element(data.begin(), data.end());
+
+        vector<int> res(n);
+        vector<int> c(max - min + 1);
+
+        for (int i = 0; i < data.size(); i++)
+            c[data[i] - min]++;
+
+        for (int i = 1; i < c.size(); i++)
+            c[i] += c[i - 1];
+
+        for (int i = data.size() - 1; i >= 0; i--)
+        {
+            res[c[data[i] - min] - 1] = data[i];
+            c[data[i] - min]--;
+        }
+
+        data = res;
     }
 
     template <typename T>
