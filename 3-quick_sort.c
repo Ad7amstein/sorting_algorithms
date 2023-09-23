@@ -11,7 +11,7 @@
  *
  * Return: pivot position.
  */
-size_t partition(int *array, int lo, int hi, size_t size)
+int partition(int *array, int lo, int hi, size_t size)
 {
 	int pivot = array[hi], i = lo - 1, j;
 
