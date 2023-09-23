@@ -8,6 +8,7 @@
  * @array: array to be patitioned
  * @lo: first index
  * @hi: seconde index
+ * @size: size of the array.
  *
  * Return: pivot position.
  */
@@ -37,6 +38,7 @@ int partition(int *array, int lo, int hi, size_t size)
  * @array: array to be sortd
  * @lo: left index
  * @hi: right index
+ * @size: size of the array.
  */
 void quicksort(int *array, int lo, int hi, size_t size)
 {

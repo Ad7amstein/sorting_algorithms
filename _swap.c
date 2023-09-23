@@ -6,6 +6,7 @@
  * @array: array
  * @p1: first position.
  * @p2: second position.
+ * @size: size of the array.
  */
 void _swap(int *array, int p1, int p2, size_t size)
 {
