@@ -1,5 +1,11 @@
 #include "sort.h"
 
+/**
+ * _swap_node - swaping two nodes in a doubly linked list
+ * Return: void
+ * @nd1: the first node
+ * @nd2: the second node
+*/
 
 void _swap_node(listint_t *nd1, listint_t *nd2)
 {
