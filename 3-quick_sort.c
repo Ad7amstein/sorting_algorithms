@@ -1,6 +1,5 @@
 #include "sort.h"
 #include "_swap.c"
-#include <unistd.h>
 
 /**
  * partition - lomuto partition.
@@ -22,12 +21,18 @@ int partition(int *array, int lo, int hi, size_t size)
 		{
 			i++;
 			if (i != j)
-				_swap(array, j, i, size);
+			{
+				_swap(array + j, array + i);
+				print_array(array, size);
+			}
 		}
 	}
 	i++;
 	if (i != hi)
-		_swap(array, i, hi, size);
+	{
+		_swap(array + i, array + hi);
+		print_array(array, size);
+	}
 
 	return (i);
 }
