@@ -24,6 +24,8 @@ void quick_sort(int *array, size_t size);
 void quicksort(int *, int lo, int hi, size_t size);
 void _swap(int *a, int *b);
 int partition(int *, int lo, int hi, size_t size);
+void insertion_sort_list(listint_t **list);
+void _swap_node(listint_t *nd1, listint_t *nd2);
 
 #endif /* SORT_H */
 
