@@ -78,7 +78,7 @@ void top_down_split_merge(int *A, int *B, size_t iBegin, size_t iEnd)
  * @iEnd: the end.
  */
 void top_down_merge(int *A, int *B, size_t iBegin, size_t iMiddle,
-		size_t iEnd)
+		    size_t iEnd)
 {
 	size_t i = iBegin, j = iMiddle, k;
 
@@ -95,5 +95,6 @@ void top_down_merge(int *A, int *B, size_t iBegin, size_t iMiddle,
 			j++;
 		}
 	}
+	for (k = iBegin; k < iEnd; ++k)
+		A[k] = B[k];
 }
-
