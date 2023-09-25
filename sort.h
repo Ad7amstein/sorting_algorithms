@@ -31,5 +31,11 @@ void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void counting_sort(int *array, size_t size);
 int get_max(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void copy_array(int *A, int *B, size_t size);
+void top_down_split_merge(int *A, int *B, size_t iBegin, size_t iEnd);
+void top_down_merge(int *A, int *B, size_t iBegin, size_t iMiddle,
+		size_t iEnd);
+
 #endif /* SORT_H */
 
