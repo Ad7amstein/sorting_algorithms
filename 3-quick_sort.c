@@ -1,5 +1,5 @@
 #include "sort.h"
-#include "_swap.c"
+#include "_swap_int.c"
 
 /**
  * partition - lomuto partition.
