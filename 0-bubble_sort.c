@@ -1,5 +1,5 @@
 #include "sort.h"
-#include "_swap.c"
+#include "_swap_int.c"
 
 /**
  * bubble_sort - sorts an array of integers in ascending order
